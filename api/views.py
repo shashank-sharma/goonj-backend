@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .disease import extract_pdf_to_dict, get_all_pdf, download_pdf
+from .imdalerts import earthquake_status
 
 
 with open('city-data.json') as handle:
@@ -17,6 +18,18 @@ with open('city-data.json') as handle:
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
+
+class EarthQuakeView(APIView):
+
+    def get(self, request, year=None):
+        now = datetime.datetime.now()
+        if year:
+            data = earthquake_status(year)
+        else:
+            data = earthquake_status(now.year)
+
+        return Response(data)
 
 
 class DiseaseView(APIView):
