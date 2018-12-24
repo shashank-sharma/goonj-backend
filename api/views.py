@@ -40,10 +40,8 @@ class DiseaseView(APIView):
                 return Response({'error': 'Invalid input'})
         else:
             pdf_filename = download_pdf(all_pdf[str(now.year)][-1])
-        try:
-            pdf_data = extract_pdf_to_dict(pdf_filename)
-        except:
-            return Response({'error': 'API Error, contact Admin'})
+        pdf_data = extract_pdf_to_dict(pdf_filename)
+
         return Response(pdf_data)
 
 

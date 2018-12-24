@@ -28,25 +28,34 @@ def extract_pdf_to_dict(file):
 
     for page in pages:
         table = page.extract_table(table_settings)
-        data = list(filter(lambda x: x, [[tup for tup in sub_list if sub_list[0] and sub_list[0].count('/') == 4] for sub_list in table]))
-        filtered_data = [[word.replace(' \n', ' ').replace('\n', ' ').replace('  ', ' ')
-                          for word in line if word] for line in data]
+        # data = list(filter(lambda x: x, [[tup for tup in sub_list if sub_list[0] and sub_list[0].count('/') == 4] for sub_list in table]))
+        table = [[word.replace(' \n', ' ').replace('\n', ' ').replace('  ', ' ') for word in line if word] for line in table]
+        table = [line for line in table if line]
+        for i in range(len(table)):
+            if 'Name of District' in table[i]:
+                table = table[i:]
+                break
+        filtered_data = list(filter(lambda x: x,
+                           [[tup for tup in sub_list if table[0] and 'Name of District' in table[0]] for sub_list in
+                            table]))
+        # filtered_data = [[word.replace(' \n', ' ').replace('\n', ' ').replace('  ', ' ')
+        #                   for word in line] for line in data]
 
-        for data in filtered_data:
-            data = data + ['Not Available'] * 3
-            if len(data) >= 7:
-                final_data.append({
-                    'Unique Id': data[0],
-                    'Name of State/UT': data[1],
-                    'Name of District': data[2],
-                    'Disease': data[3],
-                    'No. of Cases': data[4],
-                    'No. of Deaths': data[5],
-                    'Date of Start of Outbreak': data[6],
-                    'Date of Reporting': data[7],
-                    'Current Status': data[8],
-                    'Comments': data[9]
-                })
+        if filtered_data:
+            header = filtered_data.pop(0)
+
+            recent_track = []
+            for data in filtered_data:
+                data = data + ['Not Available'] * 3
+                temp_dict = {}
+                if recent_track != [] and len(data[0]) != len(recent_track[0]):
+                    data = recent_track[:2] + data
+                else:
+                    recent_track = []
+                for i in range(len(header)):
+                    temp_dict[header[i]] = data[i]
+                    recent_track.append(data[i])
+                final_data.append(temp_dict)
     return final_data
 
 
