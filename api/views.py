@@ -1,11 +1,14 @@
 import requests
 import json
+import datetime
 
 
 from bs4 import BeautifulSoup
 from difflib import SequenceMatcher
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
+from .disease import extract_pdf_to_dict, get_all_pdf, download_pdf
 
 
 with open('city-data.json') as handle:
@@ -14,6 +17,34 @@ with open('city-data.json') as handle:
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
+
+
+class DiseaseView(APIView):
+    """
+    Disease API to show diseases encounter at particular time
+    """
+
+    def get(self, request, year=None, week=None):
+        now = datetime.datetime.now()
+        all_pdf = get_all_pdf()
+        if year:
+            if year in all_pdf:
+                if week:
+                    if int(week) < len(all_pdf[year]):
+                        pdf_filename = download_pdf(all_pdf[year][week])
+                    else:
+                        return Response({'error': 'Invalid input'})
+                else:
+                    pdf_filename = download_pdf(all_pdf[year][-1])
+            else:
+                return Response({'error': 'Invalid input'})
+        else:
+            pdf_filename = download_pdf(all_pdf[str(now.year)][-1])
+        try:
+            pdf_data = extract_pdf_to_dict(pdf_filename)
+        except:
+            return Response({'error': 'API Error, contact Admin'})
+        return Response(pdf_data)
 
 
 class WeatherView(APIView):

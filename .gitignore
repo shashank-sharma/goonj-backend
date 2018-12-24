@@ -19,4 +19,4 @@ pyenv
 myvenv
 .env
 env
-
+/static/disease/*
