@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 # from django.contrib import admin
+from .views import Home
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
+    url(r'^$', Home.as_view()),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='api-accounts')),
     url(r'^api/gov/', include('government_data.urls')),
 ]

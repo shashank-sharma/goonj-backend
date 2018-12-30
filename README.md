@@ -1,6 +1,7 @@
 Introduction
 
 [![Heroku](http://heroku-badges.herokuapp.com/?app=acro-elibrary&style=flat)](http://goonj-api.herokuapp.com/)
+[![Build Status](https://travis-ci.com/shashank-sharma/goonj-backend.svg?token=avBnQmAu2uKCMqEGwpmq&branch=master)](https://travis-ci.com/shashank-sharma/goonj-backend)
 
 Backend for Goonj API using DRF with Django 1.11 using PostgreSQL.
 
