@@ -17,11 +17,11 @@ class UserTestCase(APITestCase):
         user_count = User.objects.count()
         self.assertEqual(user_count, 1)
 
-    def test_get_list(self):
-        data = {}
-        url = api_reverse("api-accounts:user-list")
-        response = self.client.request(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    # def test_get_list(self):
+    #     data = {}
+    #     url = api_reverse("api-accounts:user-list")
+    #     response = self.client.request(url, data, format='json')
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     # def test_user_ownership(self):
     #     data = {
