@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Goonj",
+		"_postman_id": "f2cac5f6-422f-7b8e-4f76-4e52cf653a24",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"description": "",
+			"item": [
+				{
+					"name": "{{url}}/api/accounts/login/",
+					"request": {
+						"url": "{{url}}/api/accounts/login/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone_number\": \"{{phone_number}}\",\n\t\"password\": \"{{password}}\"\n}"
+						},
+						"description": "Allow user to login with phone number and password. In return we get token"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/user/",
+					"request": {
+						"url": "{{url}}/api/accounts/user/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "To get User List available. Accessible by Admin and Superuser"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/user/",
+					"request": {
+						"url": "{{url}}/api/accounts/user/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone_number\": \"123456789\"\n}"
+						},
+						"description": "Create new User. Accessible by Admin and Superuser"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

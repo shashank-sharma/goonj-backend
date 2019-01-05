@@ -58,3 +58,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def admin(self):
         return self.is_admin
+
+
+# TODO: Finalize Worker model
+class Worker(models.Model):
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    city = models.CharField(max_length=20)
+    address = models.CharField(max_length=120)
+    country = models.CharField(max_length=20)
+
+
+# TODO: Finalize Volunteer model
+class Volunteer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    city = models.CharField(max_length=20)
+    address = models.CharField(max_length=120)
+    country = models.CharField(max_length=20)

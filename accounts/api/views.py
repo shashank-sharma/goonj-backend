@@ -7,6 +7,8 @@ from .serializers import UserSerializer
 from rest_framework import generics, mixins
 
 
+# TODO: Update, destroy service needs to be created
+# TODO: Add queryset like worker=true, volunteer=true and more
 class UserAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = (IsAdminOrSuperUser,)
@@ -26,3 +28,12 @@ class UserAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+# TODO: Create API Service to directly create Worker (Permission: Admin/Superadmin)
+
+
+# TODO: Create API Service to directly create Volunteer (Permission: Admin/Superadmin)
+
+
+# TODO: Create API Service to directly create an Admin (Permission: Superadmin)
