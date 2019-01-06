@@ -10,6 +10,14 @@ from rest_framework import generics, mixins
 # TODO: Update, destroy service needs to be created
 # TODO: Add queryset like worker=true, volunteer=true and more
 class UserAPIView(mixins.CreateModelMixin, generics.ListAPIView):
+    """
+    User related APIView
+    get:
+    Return list of all existing users with multiple information
+
+    post:
+    Creates a user with given phone_number and password
+    """
     serializer_class = UserSerializer
     permission_classes = (IsAdminOrSuperUser,)
 

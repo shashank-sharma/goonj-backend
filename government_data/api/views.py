@@ -11,16 +11,21 @@ from rest_framework.response import Response
 from .disease import extract_pdf_to_dict, get_all_pdf, download_pdf
 from .imdalerts import earthquake_status
 
+from backend.settings import STATICFILES_DIRS
 
-with open('city-data.json') as handle:
+# City data consist of City name with it's unique code which is useful
+# for the implementation of WeatherViewAPI
+with open(STATICFILES_DIRS[0] + '/data/city-data.json') as handle:
     dictdump = json.loads(handle.read())
 
 
+# To check similarity between input word and existing word
+# Used in WeatherViewAPI for user input city and existing city
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 
-class EarthQuakeView(APIView):
+class EarthQuakeViewAPI(APIView):
 
     def get(self, request, year=None):
         now = datetime.datetime.now()
@@ -32,7 +37,7 @@ class EarthQuakeView(APIView):
         return Response(data)
 
 
-class DiseaseView(APIView):
+class DiseaseViewAPI(APIView):
     """
     Disease API to show diseases encounter at particular time
     """
@@ -58,7 +63,7 @@ class DiseaseView(APIView):
         return Response(pdf_data)
 
 
-class WeatherView(APIView):
+class WeatherViewAPI(APIView):
     """
     Weather API to show weather for any particular city
 
