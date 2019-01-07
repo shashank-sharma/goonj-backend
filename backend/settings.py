@@ -160,4 +160,8 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'accounts.api.utils.jwt_response_payload_handler', #app_name is name of the app which contains utils.py
+}
 AUTH_USER_MODEL = 'accounts.User'

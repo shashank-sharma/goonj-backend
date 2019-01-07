@@ -18,6 +18,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
     is_admin = models.BooleanField(_('admin'), default=False)
+    is_staff = models.BooleanField(
+        _('staff status'),
+        default=False,
+        help_text=_('Designates whether the user can log into this admin site.'),
+    )
     is_worker = models.BooleanField(_('worker'), default=False)
     is_volunteer = models.BooleanField(_('volunteer'), default=False)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)

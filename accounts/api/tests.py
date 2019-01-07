@@ -6,6 +6,7 @@ from rest_framework import status
 User = get_user_model()
 
 
+# TODO: Create Test for Update user profile
 class UserTestCase(APITestCase):
     admin_login = {
         'phone_number': '0123456789',
