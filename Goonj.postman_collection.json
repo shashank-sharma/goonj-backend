@@ -13,6 +13,19 @@
 			"item": [
 				{
 					"name": "{{url}}/api/accounts/login/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", data.token);",
+									"postman.setEnvironmentVariable(\"pk\", data.user_id);"
+								]
+							}
+						}
+					],
 					"request": {
 						"url": "{{url}}/api/accounts/login/",
 						"method": "POST",
@@ -34,7 +47,49 @@
 				{
 					"name": "{{url}}/api/accounts/user/",
 					"request": {
-						"url": "{{url}}/api/accounts/user/",
+						"url": {
+							"raw": "{{url}}/api/accounts/user/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "phone_number",
+									"value": "{{phone_number}}",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "{{first_name}}",
+									"equals": false,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "{{last_name}}",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "{{gender}}",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								}
+							],
+							"variable": []
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -75,6 +130,56 @@
 							"raw": "{\n\t\"phone_number\": \"123456789\"\n}"
 						},
 						"description": "Create new User. Accessible by Admin and Superuser"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+					"request": {
+						"url": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{email}}\",\n\t\"first_name\": \"{{first_name}}\",\n\t\"last_name\": \"{{first_name}}\",\n\t\"gender\": \"{{gender}}\"\n}"
+						},
+						"description": "Update Profile based on primary key and can be editied only by the given authenticated user"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+					"request": {
+						"url": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{email}}\",\n\t\"first_name\": \"{{first_name}}\",\n\t\"last_name\": \"{{first_name}}\",\n\t\"gender\": \"{{gender}}\"\n}"
+						},
+						"description": "Get profile information based on primary key provided. Authenticated user can view his own profile but Admin/Super Admin can view any user details"
 					},
 					"response": []
 				}

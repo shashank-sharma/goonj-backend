@@ -1,5 +1,8 @@
 from django.contrib.auth.base_user import BaseUserManager
 
+from django.db import models
+
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -28,3 +31,8 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self._create_user(phone_number, password, **extra_fields)
+
+    def myfilter(self, **filters):
+        filters = {k:v for k,v in filters.items() if v is not None}
+        qs = self.get_queryset()
+        return qs.filter(**filters)
