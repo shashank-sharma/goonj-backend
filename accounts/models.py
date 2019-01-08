@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 from django.db import models
@@ -25,6 +27,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     is_worker = models.BooleanField(_('worker'), default=False)
     is_volunteer = models.BooleanField(_('volunteer'), default=False)
+    is_online = models.BooleanField(_('online'), default=False)
+    last_activity = models.DateTimeField(_('last activity'), default=datetime.date.today)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     otp = models.CharField(max_length=4, null=False, blank=False, default=True)
 

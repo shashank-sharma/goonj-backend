@@ -5,14 +5,14 @@
     <title>Chat Room</title>
 </head>
 <body>
+<h1>To check Socket Connection</h1>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
     <input id="chat-message-input" type="text" size="100"/><br/>
     <input id="chat-message-submit" type="button" value="Send"/>
 </body>
 <script>
     var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/count/'+ window.location.search.slice(1) +'/');
+        'ws://139.59.37.82:8000/ws/count/'+ window.location.search.slice(1) +'/');
 
     var roomName = 'Hello';
 
