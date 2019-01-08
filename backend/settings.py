@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,7 +64,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['static'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,7 +101,7 @@ else:
             'PORT': '',
         }
     }
-    db_from_env = dj_database_url.config(conn_max_age=500)
+    db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
 
 # Password validation
@@ -145,7 +146,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -162,6 +162,28 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER':
-    'accounts.api.utils.jwt_response_payload_handler', #app_name is name of the app which contains utils.py
+        'accounts.api.utils.jwt_response_payload_handler',  # app_name is name of the app which contains utils.py
 }
 AUTH_USER_MODEL = 'accounts.User'
+ASGI_APPLICATION = 'backend.routing.application'
+
+
+# if production:
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+# else:
+#     CHANNEL_LAYERS = {
+#         'default': {
+#             'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#             'CONFIG': {
+#                 "hosts": [('redis://:' + config('REDIS_PASSWORD') +
+#                            '@redis-17566.c85.us-east-1-2.ec2.cloud.redislabs.com', 17566)],
+#             },
+#         },
+#     }
