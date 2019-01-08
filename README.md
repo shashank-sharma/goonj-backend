@@ -1,11 +1,11 @@
 Introduction
 
-[![Heroku](http://heroku-badges.herokuapp.com/?app=goonj-api&style=flat)](http://goonj-api.herokuapp.com/)
 [![Build Status](https://travis-ci.com/shashank-sharma/goonj-backend.svg?token=avBnQmAu2uKCMqEGwpmq&branch=master)](https://travis-ci.com/shashank-sharma/goonj-backend)
 
-Backend for Goonj API using DRF with Django 1.11 using PostgreSQL.
+Backend for Goonj API using DRF with Django 1.11 using PostgreSQL.<br>
+Project will be deployed in Digital Ocean server and will be served over there rather than using Heroku. (Note there is no automatic deployment, it will be deployed by Shashank Sharma once major updates has been done and tested successfully)
 
-Live version: [Site](http://goonj-api.herokuapp.com)
+Live version: [Site](http://139.59.37.82/docs/)
 
 ### Installation
 
@@ -21,6 +21,10 @@ Live version: [Site](http://goonj-api.herokuapp.com)
 
 3. Install dependencies<br />
 `pip install -r requirements.txt`
+
+3.1. Life is tough, so is Django with Websockets, right now you need to install
+redis so that you can use django channels easily. Not sure but docker will also be used.
+Install when it will be asked else do redis, that is important
 
 4. Database configuration
 
@@ -43,4 +47,4 @@ b. Database Url: `DATABASE_URL=<databaseurl>`
 ### Documentation
 
 Documentation will be found at:<br>
-http://goonj-api.herokuapp.com/docs/
+http://139.59.37.82/docs/
