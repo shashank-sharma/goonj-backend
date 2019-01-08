@@ -11,11 +11,11 @@ from rest_framework.response import Response
 from .disease import extract_pdf_to_dict, get_all_pdf, download_pdf
 from .imdalerts import earthquake_status
 
-from backend.settings import STATICFILES_DIRS
+from backend.settings import STATIC_ROOT
 
 # City data consist of City name with it's unique code which is useful
 # for the implementation of WeatherViewAPI
-with open(STATICFILES_DIRS[0] + '/data/city-data.json') as handle:
+with open(STATIC_ROOT + 'data/city-data.json') as handle:
     dictdump = json.loads(handle.read())
 
 
