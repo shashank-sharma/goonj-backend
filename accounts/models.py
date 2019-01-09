@@ -1,7 +1,4 @@
 import datetime
-
-from django.db import models
-
 from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
@@ -69,17 +66,32 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
 
+class GoonjCenter(models.Model):
+    is_dropping_center = models.BooleanField(default=False)
+    address = models.CharField(max_length=120)
+    city = models.CharField(max_length=20)
+    country = models.CharField(max_length=20)
+    start_time = models.TimeField(default='10:00')
+    end_time = models.TimeField(default='17:00')
+
+
 # TODO: Finalize Worker model
 class Worker(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
-    city = models.CharField(max_length=20)
-    address = models.CharField(max_length=120)
-    country = models.CharField(max_length=20)
+    goonj_center = models.OneToOneField(GoonjCenter, on_delete=models.CASCADE, null=True, blank=True)
 
 
 # TODO: Finalize Volunteer model
 class Volunteer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    city = models.CharField(max_length=20)
-    address = models.CharField(max_length=120)
-    country = models.CharField(max_length=20)
+    donating_session_active = models.BooleanField(default=False)
+    goonj_center = models.OneToOneField(GoonjCenter, on_delete=models.CASCADE, null=True, blank=True)
+
+
+class Donator(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=10)
+    gender = models.CharField(max_length=8)
+    date_joined = models.DateTimeField(auto_now_add=True)
