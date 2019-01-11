@@ -5,7 +5,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 
-from .managers import UserManager
+from .managers import UserManager, DonatorManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -89,6 +89,8 @@ class Volunteer(models.Model):
 
 
 class Donator(models.Model):
+    objects = DonatorManager()
+
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()

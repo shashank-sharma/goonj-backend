@@ -134,10 +134,10 @@
 					"response": []
 				},
 				{
-					"name": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+					"name": "{{url}}/api/accounts/profile/{{pk}}",
 					"request": {
-						"url": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
-						"method": "GET",
+						"url": "{{url}}/api/accounts/profile/{{pk}}",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -159,9 +159,9 @@
 					"response": []
 				},
 				{
-					"name": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+					"name": "{{url}}/api/accounts/profile/{{pk}}",
 					"request": {
-						"url": "http://127.0.0.1:8000/api/accounts/profile/{{pk}}",
+						"url": "{{url}}/api/accounts/profile/{{pk}}",
 						"method": "GET",
 						"header": [
 							{
@@ -180,6 +180,142 @@
 							"raw": "{\n\t\"email\": \"{{email}}\",\n\t\"first_name\": \"{{first_name}}\",\n\t\"last_name\": \"{{first_name}}\",\n\t\"gender\": \"{{gender}}\"\n}"
 						},
 						"description": "Get profile information based on primary key provided. Authenticated user can view his own profile but Admin/Super Admin can view any user details"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/donator/",
+					"request": {
+						"url": "{{url}}/api/accounts/donator/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get donator list view"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/donator/",
+					"request": {
+						"url": "{{url}}/api/accounts/donator/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"Bruce\",\n\t\"last_name\": \"Wayne\",\n\t\"phone_number\": \"7898914383\",\n\t\"email\": \"brucewayne@gmail.com\",\n\t\"gender\": \"Male\"\n}"
+						},
+						"description": "Create Donator model"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/donator/{{donator-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/donator/{{donator-pk}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"Bruce\",\n\t\"last_name\": \"Wayne\",\n\t\"phone_number\": \"0123456789\",\n\t\"email\": \"brucewayne@gmail.com\",\n\t\"gender\": \"Male\"\n}"
+						},
+						"description": "Update any donator profile"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/donator/{{donator-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/donator/{{donator-pk}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"Bruce\",\n\t\"last_name\": \"Wayne\",\n\t\"phone_number\": \"0123456789\",\n\t\"email\": \"brucewayne@gmail.com\",\n\t\"gender\": \"Male\"\n}"
+						},
+						"description": "Get particular donator profile"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "government_data",
+			"description": "All request related to scraping or getting data from government sites",
+			"item": [
+				{
+					"name": "{{url}}/api/gov/weather/{{city-name}}",
+					"request": {
+						"url": "{{url}}/api/gov/weather/{{city-name}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "To get weather for any given city name"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/gov/disease/api/gov/disease/2018/1/",
+					"request": {
+						"url": "{{url}}/api/gov/disease/api/gov/disease/2018/1/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get disease outbreak information based on year and week number"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/gov/alert/earthquake/2018",
+					"request": {
+						"url": "{{url}}/api/gov/alert/earthquake/2018",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get earthquake information based on year"
 					},
 					"response": []
 				}

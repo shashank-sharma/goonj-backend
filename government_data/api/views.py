@@ -26,6 +26,7 @@ def similar(a, b):
 
 
 class EarthQuakeViewAPI(APIView):
+    permission_classes = []
 
     def get(self, request, year=None):
         now = datetime.datetime.now()
@@ -41,6 +42,7 @@ class DiseaseViewAPI(APIView):
     """
     Disease API to show diseases encounter at particular time
     """
+    permission_classes = []
 
     def get(self, request, year=None, week=None):
         now = datetime.datetime.now()
@@ -49,7 +51,7 @@ class DiseaseViewAPI(APIView):
             if year in all_pdf:
                 if week:
                     if int(week) < len(all_pdf[year]):
-                        pdf_filename = download_pdf(all_pdf[year][week])
+                        pdf_filename = download_pdf(all_pdf[year][int(week)])
                     else:
                         return Response({'error': 'Invalid input'})
                 else:
@@ -70,6 +72,7 @@ class WeatherViewAPI(APIView):
     Attributes:
         pk : City Name
     """
+    permission_classes = []
     url = 'http://city.imd.gov.in/citywx/city_weather.php?id='
 
     def get(self, request, pk=None):

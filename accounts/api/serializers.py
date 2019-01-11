@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 
-from accounts.models import User
+from accounts.models import User, Donator
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -13,9 +13,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'gender',
+            'is_admin',
+            'is_worker',
+            'is_volunteer',
+            'date_joined',
             'avatar',
         ]
-        read_only_fields = ['pk']
+        read_only_fields = ['pk', 'date_joined']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -56,3 +60,18 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Password Length should be greater than 8")
         else:
             return make_password(value)
+
+
+class DonatorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Donator
+        fields = [
+            'pk',
+            'first_name',
+            'last_name',
+            'email',
+            'phone_number',
+            'gender',
+            'date_joined'
+        ]
+        read_only_fields = ['pk', 'date_joined']
