@@ -279,6 +279,303 @@
 						"description": "Get particular donator profile"
 					},
 					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/worker",
+					"request": {
+						"url": "{{url}}/api/accounts/worker",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {{pk}}\n}"
+						},
+						"description": "Create worker with given user id"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/worker",
+					"request": {
+						"url": "{{url}}/api/accounts/worker",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {{pk}}\n}"
+						},
+						"description": "Get all worker info with user info"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/worker/{{worker-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/worker/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {{pk}}\n}"
+						},
+						"description": "Get any specific worker information by id"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/worker/{{worker-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/worker/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {{pk}}\n}"
+						},
+						"description": "Update info of any specific worker"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/goonj-center",
+					"request": {
+						"url": "{{url}}/api/accounts/goonj-center",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"city\": \"Rishikesh\",\n\t\"address\": \"GOONJ, Rishikesh – Near Lal Bahadur Shashtri School Dhalwala ,Rishikesh -249 201\",\n\t\"country\": \"India\"\n}"
+						},
+						"description": "View all available Goonj center"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/goonj-center",
+					"request": {
+						"url": "{{url}}/api/accounts/goonj-center",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"city\": \"Rishikesh\",\n\t\"address\": \"GOONJ, Rishikesh – Near Lal Bahadur Shashtri School Dhalwala ,Rishikesh -249 201\",\n\t\"country\": \"India\"\n}"
+						},
+						"description": "To create a goonj center (Only super admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/goonj-center/{{goonj-center-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/goonj-center/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"city\": \"Bangalore\",\n\t\"address\": \"GOONJ, SY. No. 51/1, Chikka Begur Gate, Hosur Main Road, Kudlu Gate, Bangalore- 560068 (Land mark: Near Agrawal Hospital)\",\n\t\"country\": \"India\"\n}"
+						},
+						"description": "Update any specific goonj center information"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/goonj-center/{{goonj-center-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/goonj-center/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"city\": \"Bangalore\",\n\t\"address\": \"GOONJ, SY. No. 51/1, Chikka Begur Gate, Hosur Main Road, Kudlu Gate, Bangalore- 560068 (Land mark: Near Agrawal Hospital)\",\n\t\"country\": \"India\"\n}"
+						},
+						"description": "Get any specific goonj center information by id"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/volunteer/",
+					"request": {
+						"url": "{{url}}/api/accounts/volunteer/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Get volunteer information as list"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/volunteer/",
+					"request": {
+						"url": "{{url}}/api/accounts/volunteer/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": 2\n}"
+						},
+						"description": "POST volunteer information"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/volunteer/{{volunteer-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/volunteer/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": 2\n}"
+						},
+						"description": "Get particular volunteer information"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/accounts/volunteer/{{volunteer-pk}}",
+					"request": {
+						"url": "{{url}}/api/accounts/volunteer/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": 2,\n\t\"donating_session_active\": false\n}"
+						},
+						"description": "Update particular volunteer information"
+					},
+					"response": []
 				}
 			]
 		},

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 
-from accounts.models import User, Donator
+from accounts.models import User, Donator, Worker, Volunteer, GoonjCenter
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -75,3 +75,51 @@ class DonatorSerializer(serializers.ModelSerializer):
             'date_joined'
         ]
         read_only_fields = ['pk', 'date_joined']
+
+
+class GoonjCenterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = GoonjCenter
+        fields = [
+            'pk',
+            'is_dropping_center',
+            'address',
+            'city',
+            'country',
+            'start_time',
+            'end_time'
+        ]
+
+
+class WorkerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Worker
+        fields = [
+            'pk',
+            'user',
+            'goonj_center'
+        ]
+
+    def to_representation(self, instance):
+        self.fields['user'] = UserSerializer(read_only=True)
+        self.fields['goonj_center'] = GoonjCenterSerializer(read_only=True)
+        return super(WorkerSerializer, self).to_representation(instance)
+
+
+class VolunteerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Volunteer
+        fields = [
+            'pk',
+            'user',
+            'donating_session_active',
+            'goonj_center'
+        ]
+
+    def to_representation(self, instance):
+        self.fields['user'] = UserSerializer(read_only=True)
+        self.fields['goonj_center'] = GoonjCenterSerializer(read_only=True)
+        return super(VolunteerSerializer, self).to_representation(instance)

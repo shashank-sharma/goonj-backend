@@ -46,7 +46,18 @@ class IsAdminOrSuperUser(permissions.BasePermission):
             return False
 
 
+class IsSuperUserOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        if hasattr(request.user, 'is_superuser') and request.user.is_superuser:
+            return True
+        else:
+            return False
+
+
 # Not sure why I did this mess but for some reason I loved it :D
+# TODO: Check if we are using this else delete it
 class CustomOrIsAdminOrSuperUserPermission(permissions.BasePermission):
     """
     Permission class to check that a user can update his own resource only

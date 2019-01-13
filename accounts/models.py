@@ -68,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class GoonjCenter(models.Model):
     is_dropping_center = models.BooleanField(default=False)
-    address = models.CharField(max_length=120)
+    address = models.CharField(max_length=600)
     city = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
     start_time = models.TimeField(default='10:00')
