@@ -18,6 +18,7 @@ def earthquake_status(year):
     return final_dict
 
 
+# TODO: Not high priority: Complete all functions
 def weather_status(year):
     # http://www.imd.gov.in/section/nhac/dynamic/allindiasevere.pdf
     pass

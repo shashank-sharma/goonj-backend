@@ -1,13 +1,22 @@
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.pagination import LimitOffsetPagination, PageNumberPagination
+from rest_framework.pagination import LimitOffsetPagination
 
 from accounts.models import User, Donator, Worker, GoonjCenter, Volunteer
-from .permissions import IsAdminOrSuperUser, CustomOrIsAdminOrSuperUserPermission, IsSuperUserOrReadOnly, IsSuperUser
-from .serializers import UserSerializer, UserProfileSerializer, DonatorSerializer, WorkerSerializer, \
-    GoonjCenterSerializer, VolunteerSerializer
+from .permissions import (
+    IsAdminOrSuperUser,
+    CustomOrIsAdminOrSuperUserPermission,
+    IsSuperUserOrReadOnly,
+    IsSuperUser)
+from .serializers import (
+    UserSerializer,
+    UserProfileSerializer,
+    DonatorSerializer,
+    WorkerSerializer,
+    GoonjCenterSerializer,
+    VolunteerSerializer)
 
-from rest_framework import generics, mixins, authentication, permissions
+from rest_framework import generics, mixins
 
 
 class UserAPIView(mixins.CreateModelMixin, generics.ListAPIView):

@@ -1,9 +1,9 @@
-Introduction
-
 [![Build Status](https://travis-ci.com/shashank-sharma/goonj-backend.svg?token=avBnQmAu2uKCMqEGwpmq&branch=master)](https://travis-ci.com/shashank-sharma/goonj-backend)
 
-Backend for Goonj API using DRF with Django 1.11 using PostgreSQL.<br>
-Project will be deployed in Digital Ocean server and will be served over there rather than using Heroku. (Note there is no automatic deployment, it will be deployed by Shashank Sharma once major updates has been done and tested successfully)
+# Introduction
+
+Backend for Goonj API using DRF with Django 1.11.6 using PostgreSQL.<br>
+Project will be deployed in Digital Ocean server and will be served over there rather than using Heroku. (Note there is no automatic deployment, it will be deployed by me once major updates has been done and tested successfully)
 
 Live version: [Site](http://139.59.37.82/docs/)
 
