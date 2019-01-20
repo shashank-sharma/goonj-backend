@@ -10,7 +10,7 @@ from .views import (UserAPIView,
                     GoonjCenterAPIView,
                     GoonjCenterProfileAPIView,
                     VolunteerAPIView,
-                    VolunteerProfileAPIView)
+                    VolunteerProfileAPIView, OnlineUserAPIView)
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^goonj-center/(?P<pk>\d+)', GoonjCenterProfileAPIView.as_view(), name='goonj-center-profile'),
     url(r'^goonj-center/?', GoonjCenterAPIView.as_view(), name='goonj-center'),
     url(r'^volunteer/(?P<pk>\d+)', VolunteerProfileAPIView.as_view(), name='volunteer-profile'),
-    url(r'^volunteer/?', VolunteerAPIView.as_view(), name='volunteer')
+    url(r'^volunteer/?', VolunteerAPIView.as_view(), name='volunteer'),
+    url(r'^online/?', OnlineUserAPIView.as_view(), name='online')
 ]

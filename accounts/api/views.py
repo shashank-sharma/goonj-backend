@@ -19,6 +19,14 @@ from .serializers import (
 from rest_framework import generics, mixins
 
 
+class OnlineUserAPIView(generics.ListAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = []
+
+    def get_queryset(self):
+        return User.objects.filter(is_online=True)
+
+
 class UserAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     """
     User related APIView
