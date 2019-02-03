@@ -22,3 +22,4 @@ coreapi==2.3.3
 channels==2.1.6
 channels-redis==2.3.2
 daphne==2.2.4
+django-cors-headers==2.4.0
