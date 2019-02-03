@@ -15,7 +15,7 @@ table_settings = {
     "vertical_strategy": "lines",
     "horizontal_strategy": "lines",
     "intersection_y_tolerance": 505,
-    "keep_blank_chars": False,
+    "keep_blank_chars": True,
     "snap_tolerance": 5,
     "edge_min_length": 50
 }
@@ -25,6 +25,7 @@ def extract_pdf_to_dict(file):
     pdf = pdfplumber.open(file)
     pages = pdf.pages
     final_data = []
+    previous_header = None
 
     for page in pages:
         table = page.extract_table(table_settings)
@@ -42,23 +43,37 @@ def extract_pdf_to_dict(file):
         #                   for word in line] for line in data]
 
         if filtered_data:
+            # print('\n\nNew Page\n\n')
             header = filtered_data.pop(0)
-
+            # To maintain header for each page in consistent manner
+            if len(header) != 10 and previous_header:
+                header = previous_header
+            else:
+                previous_header = header
             recent_track = []
             for data in filtered_data:
-                # If 1 length of data then comment is in continuation (bug fixed)
-                if len(data) == 1:
+                # If 1/2 length of data then comment is in continuation (bug fixed)
+                if len(data) <= 2:
                     final_data[-1][header[-1]] += " " + data[0]
                     continue
+                # We are not interested in previous week data
+                if 'DISEASE' in ''.join(data[:5]):
+                    break
                 data = data + ['Not Available'] * 3
                 temp_dict = {}
-                if recent_track != [] and len(data[0]) != len(recent_track[0]):
+                # print(data[0], len(data[0]))
+                if recent_track != [] and len(data) == 11:
                     data = recent_track[:2] + data
+                # TODO: Multi type of disease needs to tracked in recent_track
+                elif recent_track != [] and len(data) == 9:
+                    data = recent_track[:4] + data
                 else:
                     recent_track = []
+                # print(header)
+                # print('\n\n', data)
                 for i in range(len(header)):
                     temp_dict[header[i]] = data[i]
-                    recent_track.append(data[i])
+                    recent_track.append(data)
                 final_data.append(temp_dict)
     return final_data
 
