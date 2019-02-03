@@ -46,6 +46,10 @@ def extract_pdf_to_dict(file):
 
             recent_track = []
             for data in filtered_data:
+                # If 1 length of data then comment is in continuation (bug fixed)
+                if len(data) == 1:
+                    final_data[-1][header[-1]] += " " + data[0]
+                    continue
                 data = data + ['Not Available'] * 3
                 temp_dict = {}
                 if recent_track != [] and len(data[0]) != len(recent_track[0]):
