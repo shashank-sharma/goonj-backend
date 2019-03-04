@@ -2,8 +2,10 @@
 
 # Introduction
 
-Backend for Goonj API using DRF with Django 1.11.6 using PostgreSQL.<br>
-Project will be deployed in Digital Ocean server and will be served over there rather than using Heroku. (Note there is no automatic deployment, it will be deployed by me once major updates has been done and tested successfully)
+#### Originally created for Goonj NGO in SIH-2019 but not selected in Idea proposal stage so work was stopped, later we decided to restart our work for normal NGOs
+
+Backend for NGO API using DRF with Django 1.11.6 using PostgreSQL.<br>
+Project deployed in Digital Ocean server and will be served over there rather than using Heroku. (Note there is no automatic deployment, it will be deployed by me once major updates has been done and tested successfully)
 
 Live version: [Site](http://139.59.37.82/docs/)
 
